@@ -9,7 +9,8 @@ function greet(name) {
   return "Hello, " + name + "!";
 }
 
-console.log(greet("Ana"));
+console.log(greet("Johan"));
+console.log(greet("Bob"));
 
 // TODO 1: call greet with your own name and log what it gives back.
 
@@ -24,6 +25,7 @@ function playRiff(start) {
   synth.triggerAttackRelease("C4", "8n", start);
   synth.triggerAttackRelease("E4", "8n", start + 0.5);
   synth.triggerAttackRelease("G4", "8n", start + 1);
+  synth.triggerAttackRelease("A4", "8n", start + 1.5);
   // TODO 3: add a fourth note at start + 1.5
 }
 
