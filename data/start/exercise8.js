@@ -2,8 +2,11 @@
 
 // The octave arrives as text, the way it would from a text box on a web page.
 const typedOctave = "4";
-const noteUp = "C" + (typedOctave + 1);
-const noteDown = "C" + (typedOctave - 1);
+const noteUp = "C" + (Number(typedOctave) + 1); // Adding "number" before TypedOctave turns "4" into a number before the "+" runs so it adds instead of glues
+const noteDown = "C" + (typedOctave - 1); // for line nr 5: Turn text into a number before arithmetic:
+console.log(typedOctave);
+console.log(noteUp);
+console.log(noteDown);
 
 // TODO 8a: predict what noteUp and noteDown hold. Then log them and play exercise 8.
 // TODO 8b: one note is wildly wrong. Why? Fix noteUp so it really is one octave up.

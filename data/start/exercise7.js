@@ -8,9 +8,14 @@ const middleNote = "e4";
 const topNote = "g4";
 
 function exercise7(start) {
-  synth.triggerAttackRelease(bottomNote, "2n", start);
-  synth.triggerAttackRelease(middleNote, "2n", start);
-  synth.triggerAttackRelease(topNote, "2n", start);
+  chordSynth.triggerAttackRelease(bottomNote, "2n", start); // change from synth tp chordsynth, play notes at once
+  chordSynth.triggerAttackRelease(middleNote, "2n", start); //-II-
+  chordSynth.triggerAttackRelease(topNote, "2n", start); //-II-
+  const chord = bottomNote + " " + middleNote + " " + topNote; // Glued the notes together into 1 string,quotation marks as spaces so it doesnt come put as c4e4g4.
+  console.log(chord);
+  console.log(chord.toUpperCase());
+  console.log(chord.length);
+  console.log(chord);
 }
 
 // TODO 7a: play exercise 7 as it is. How many notes do you hear? Read the red error in the console.
