@@ -36,6 +36,9 @@ new Tone.Loop(playStep, "4n").start(0); // "4n": once every beat
 // ---------- Step 4: decide what plays on which beat ----------
 // TODO 4a: in playStep, put playBass(time); inside if (beat === 1) { … }. Now the bass plays on beat 1 only.
 // TODO 4b: play the chord on beats 1 and 3: if (beat === 1 || beat === 3) { playChord(time); }
+// TODO 4c: guard a sound with a yes/no fact AND a beat. At the top of the file: let isLively = true;
+//          Then in playStep: if (isLively && beat === 4) { synth.triggerAttackRelease("C5", "16n", time); }
+//          Play it with isLively true, then false. Both sides have to be true for the high note.
 
 // ---------- Step 5: give the song sections ----------
 // TODO 5a: make a second variable at the top: let bar = 1;
