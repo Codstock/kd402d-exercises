@@ -5,6 +5,7 @@
 // Where we are in the song. Both change while it plays, so they're let.
 let beat = 1; // 1, 2, 3, 4, then back to 1
 let bar = 1; // goes up by one every time the beat goes back to 1
+let isLively = true; // a yes/no fact: add a high note on beat 4? Try false
 
 // ---------- Step 1: the instruments, as functions ----------
 // Each one plays at time: the exact moment Tone hands us.
@@ -40,6 +41,10 @@ function playStep(time) {
   }
   if (beat === 1 || beat === 3) {
     playChord(time);
+  }
+  // Step 4c: a high note on beat 4, but only while isLively is true. Both sides must be true.
+  if (isLively && beat === 4) {
+    synth.triggerAttackRelease("C5", "16n", time);
   }
   // Step 5: the melody comes in after the first two bars, and never on beat 1
   if (bar > 2 && beat !== 1) {
