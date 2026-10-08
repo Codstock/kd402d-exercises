@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conditionals</title>
+    <link rel="icon" href="data:," />
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 44rem;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+      h2 {
+        margin-top: 2rem;
+        font-size: 1.1rem;
+      }
+      button {
+        font-size: 1rem;
+        padding: 0.4rem 1rem;
+        margin: 0 0.4rem 0.6rem 0;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Conditionals</h1>
+    <p>Open the browser console to see what the code logs.</p>
+
+    <h2>The song</h2>
+    <p>In <code>song.js</code>.</p>
+    <button id="song-play">Play</button>
+    <button id="song-stop">Stop</button>
+
+    <h2>The demos from the lecture</h2>
+    <p>In <code>demos.js</code>. Change a value, save, and press the button again.</p>
+    <button id="demo-1">1 · if / else</button>
+    <button id="demo-2">2 · A comparison</button>
+    <button id="demo-3">3 · else if</button>
+    <button id="demo-4">4 · And, or, not</button>
+
+    <!-- Tone.js: the library from Tuesday afternoon. It needs an internet connection. -->
+    <script src="https://unpkg.com/tone@15.1.22/build/Tone.js"></script>
+    <script src="setup.js"></script>
+    <script src="demos.js"></script>
+    <script src="song.js"></script>
+  </body>
+</html>
