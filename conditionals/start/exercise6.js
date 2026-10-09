@@ -3,7 +3,15 @@
 // The rest are skipped.
 
 function exercise6(start) {
-  let bpm = 90; // try 60, 100 and 140
+  let bpm = 140; // try 60, 100 and 140
+
+  if (bpm < 80) {
+    synth.triggerAttackRelease("C3", "4n", start);
+  } else if (bpm < 120) {
+    synth.triggerAttackRelease("C4", "4n", start);
+  } else {
+    synth.triggerAttackRelease("C5", "4n", start);
+  }
 
   // TODO 6a: pick a note from the tempo band:
   //            slower than 80:        play "C3", a low note
