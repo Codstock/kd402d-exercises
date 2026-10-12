@@ -30,7 +30,8 @@ Don't change these files. Read them, copy from them, run them, but make your own
 
 - **Exercise 1.** `event.key` is always a string: `a`, `7`, `" "` (a space, so the console line looks empty), `Shift`, `ArrowUp`.
 - **Exercises 2 and 3.** `a`, `s` and `d` play C4, D4 and E4; every other key is logged and plays nothing.
-- **Exercise 4b.** With brackets, `handleKeyDown()` runs once while the page loads. Nobody pressed a key, so `event` is `undefined` and the console shows `TypeError: Cannot read properties of undefined (reading 'key')`. The page stops there, and `addEventListener` never gets a function to keep.
+- **Exercise 4b.** After a reload, the console stays empty until you press a key; then it shows `handleKeyDown was called` once per key.
+- **Exercise 4c.** No line in the file calls `handleKeyDown()`. The browser calls it, every time a key goes down, and hands it the event; `addEventListener` only handed the function over. (If you ever see `TypeError: Cannot read properties of undefined (reading 'key')` as the page loads, there are brackets after the name in `addEventListener`.)
 
 ### Block 2 (`block2/key-as-data.js`)
 

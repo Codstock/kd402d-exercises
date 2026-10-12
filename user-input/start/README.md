@@ -71,7 +71,7 @@ Each file makes its own instrument in its first line; there's no `setup.js` in t
 | 1        | Predict `event.key` for five keys, then check                   | `Log every key press`          |
 | 2        | `a` plays C4                                                    | `Play a note on a`             |
 | 3        | `s` and `d` with `else if`, and a three-note tune               | `Three keys, three notes`      |
-| 4        | Name the handler `handleKeyDown`, then see what brackets break  | `Name the key handler`         |
+| 4        | Name the handler `handleKeyDown`, and find out who calls it     | `Name the key handler`         |
 
 ### Block 2: the key as data (`block2/key-as-data.js`)
 

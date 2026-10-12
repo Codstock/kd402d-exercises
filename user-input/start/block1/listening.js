@@ -32,6 +32,8 @@ document.addEventListener("keydown", function (event) {
 //          Then hand it over, with no brackets after the name:
 //            document.addEventListener("keydown", handleKeyDown);
 //          Press keys: everything should work exactly as before.
-// TODO 4b: now write handleKeyDown() with brackets in the addEventListener line. Save.
-//          Read the console. What went wrong, and when? Write why in a comment, then take the
-//          brackets off again.
+// TODO 4b: who calls it? Make the first line inside handleKeyDown say so:
+//            console.log("handleKeyDown was called");
+//          Save, and don't press anything yet: what does the console show? Now press keys.
+// TODO 4c: look through your file for a line that calls handleKeyDown(). Is there one?
+//          In a comment, say who calls handleKeyDown, and when.
