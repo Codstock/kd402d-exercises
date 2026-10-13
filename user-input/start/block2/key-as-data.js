@@ -12,8 +12,8 @@ function handleKeyDown(event) {
   Tone.start(); // sound can only start after a key press or a click
   console.log(event.key);
 
-  if (event.key.length === 1 && event.key >= "a" && event.key <= "g") {
-    const note = event.key.toUpperCase() + octave;
+  const note = noteForKey(event.key, octave);
+  if (note !== "") {
     synth.triggerAttackRelease(note, "8n");
   }
 }
@@ -35,6 +35,34 @@ document.addEventListener("keydown", handleKeyDown);
 //          Press a to g. Then press h, Enter and Shift: nothing should play.
 // TODO 5c: in a comment, say what event.key.length === 1 checks, and why it's there.
 // It checks that only keys with 1 characeter plays, meaning it filters out longer ones like: enter, space shift
+
+function letterNote(key, oct) {
+  if (key.length === 1 && key >= "a" && key <= "g") {
+    return key.toUpperCase() + oct;
+  }
+  return "";
+}
+
+function noteForKey(key, oct) {
+  if (key === "a") {
+    return "C" + oct;
+  } else if (key === "s") {
+    return "D" + oct;
+  } else if (key === "d") {
+    return "E" + oct;
+  } else if (key === "f") {
+    return "F" + oct;
+  } else if (key === "g") {
+    return "G" + oct;
+  } else if (key === "h") {
+    return "A" + oct;
+  } else if (key === "j") {
+    return "B" + oct;
+  } else if (key === "k") {
+    return "C" + oct;
+  }
+  return "";
+}
 
 // ---------- Exercise 6: keys are piano keys ----------
 // Now the position on the keyboard decides the note: the home row is a piano's white keys.
