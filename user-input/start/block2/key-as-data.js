@@ -12,12 +12,9 @@ function handleKeyDown(event) {
   Tone.start(); // sound can only start after a key press or a click
   console.log(event.key);
 
-  if (event.key === "a") {
-    synth.triggerAttackRelease("C4", "8n");
-  } else if (event.key === "s") {
-    synth.triggerAttackRelease("D4", "8n");
-  } else if (event.key === "d") {
-    synth.triggerAttackRelease("E4", "8n");
+  if (event.key.length === 1 && event.key >= "a" && event.key <= "g") {
+    const note = event.key.toUpperCase() + octave;
+    synth.triggerAttackRelease(note, "8n");
   }
 }
 
@@ -26,8 +23,10 @@ document.addEventListener("keydown", handleKeyDown);
 // ---------- Exercise 5: keys are note names ----------
 // The letter IS the note: press c, hear C.
 // 5a Predict first, in a comment: what do these give? Strings compare in alphabetical order.
-//      "c" >= "a"      "h" <= "g"      "Enter" >= "a"
-//    Log them to check:  console.log("c" >= "a");
+//      "c" >= "a"      "h" <= "g"      "Enter" >= "a" //
+//    Log them to check:  console.log("c" >= "a"); c is greater or equal to a. strings compare in alpabetic order -->
+//console.log("h" <= "g"); // h comes afer g and is greater not less than or equal
+// Capitals has lower numeric value in javascript. so Enter is not greater or equal to a.
 // TODO 5b: replace the whole if / else if chain in handleKeyDown with:
 //            if (event.key.length === 1 && event.key >= "a" && event.key <= "g") {
 //              const note = event.key.toUpperCase() + octave;
@@ -35,6 +34,7 @@ document.addEventListener("keydown", handleKeyDown);
 //            }
 //          Press a to g. Then press h, Enter and Shift: nothing should play.
 // TODO 5c: in a comment, say what event.key.length === 1 checks, and why it's there.
+// It checks that only keys with 1 characeter plays, meaning it filters out longer ones like: enter, space shift
 
 // ---------- Exercise 6: keys are piano keys ----------
 // Now the position on the keyboard decides the note: the home row is a piano's white keys.
