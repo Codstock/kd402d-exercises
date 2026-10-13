@@ -10,7 +10,7 @@ let octave = 4;
 
 function handleKeyDown(event) {
   Tone.start(); // sound can only start after a key press or a click
-  console.log(event.key);
+
 
   let playOctave = octave;
   if (event.shiftKey) {
