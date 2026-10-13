@@ -12,6 +12,31 @@ const synth = new Tone.Synth().toDestination();
 document.addEventListener("keydown", function (event) {
   Tone.start(); // sound can only start after a key press or a click
   console.log(event.key);
+
+  // if (event.key === "a") {
+  //  synth.triggerAttackRelease("C4", "8n");
+  // } else if (event.key === "s") {
+  //  synth.triggerAttackRelease("D4", "8n");
+  // } else if (event.key === "d") {
+  //   synth.triggerAttackRelease("E4", "8n");
+  // }
+  //});
+
+  function handleKeyDown(event) {
+    console.log("handleKeyDown was called");
+    document.addEventListener("keydown", handleKeyDown);
+    Tone.start(); // sound can only start after a key press or a click
+    // console.log(handleKeyDown);
+    console.log(event.key);
+  }
+
+  if (event.key === "a") {
+    synth.triggerAttackRelease("C4", "8n");
+  } else if (event.key === "s") {
+    synth.triggerAttackRelease("D4", "8n");
+  } else if (event.key === "d") {
+    synth.triggerAttackRelease("E4", "8n");
+  }
 });
 
 // ---------- Exercise 2: one key, one sound ----------
