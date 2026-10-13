@@ -12,7 +12,12 @@ function handleKeyDown(event) {
   Tone.start(); // sound can only start after a key press or a click
   console.log(event.key);
 
-  const note = noteForKey(event.key, octave);
+  let playOctave = octave;
+  if (event.shiftKey) {
+    playOctave = octave + 1;
+  }
+
+  const note = noteForKey(event.key.toLowerCase(), playOctave);
   if (note !== "") {
     synth.triggerAttackRelease(note, "8n");
   }
