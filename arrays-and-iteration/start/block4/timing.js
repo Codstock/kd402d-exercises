@@ -7,13 +7,16 @@
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 
 let melody = ["C4", "E4", "G4", "B4"];
+let bass = ["A2", "C3", "E3", "A3", "C4"];
+let step = 0.2;
 // TODO 14a: a second, longer list:  let bass = ["A2", "C3", "E3", "A3", "C4"];
 
 // Plays every note in melody. All the notes start at once.
 function playMelody() {
   for (let i = 0; i < melody.length; i++) {
-    console.log("pass " + i + ": " + melody[i]);
-    synth.triggerAttackRelease(melody[i], "8n");
+    let startTime = now + i * step;
+    console.log("pass " + i + ": " + melody[i] + " starts at " + startTime);
+    synth.triggerAttackRelease(melody[i], "8n", Tone.now() + i * startTime);
   }
 }
 
