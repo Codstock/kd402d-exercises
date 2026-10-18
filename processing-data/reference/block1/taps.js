@@ -22,6 +22,10 @@ let taps = [];
 // 3c: with one tap, taps[i - 1] is taps[-1], which is undefined, so the gap is NaN
 //     (not a number). The first tap has nothing before it, so it has no gap.
 
+// 3d: inside keyDown, every tap makes a new empty list, so it only ever holds one moment.
+//     taps has to remember every tap, so it lives at the top of the file. gap is only about
+//     this one tap: it's made inside keyDown, fresh each time, and gone when the function ends.
+
 // 4b: 1000 / 250 is 4 taps per second. 1000 / 1000 is 1.
 // 4c: the rate. One number stands in for "how fast were they going".
 

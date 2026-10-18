@@ -29,6 +29,9 @@ let taps = [];
 // 3b Predict: which gives the smaller gaps, slow tapping or quick tapping? Check.
 // 3c Save, click, and tap once. The very first gap logs something odd. What, and why?
 //    Fix it, so the first tap logs no gap.
+// 3d Where does taps live? Predict, in a comment: if you move  let taps = [];  into keyDown,
+//    what does the list look like after three taps? Try it, then move it back.
+//    In a comment: why does taps live at the top of the file, and gap inside keyDown?
 
 // ---------- Exercise 4: taps per second ----------
 // TODO 4a: turn the gap into a rate, 1000 / gap, and log it.
