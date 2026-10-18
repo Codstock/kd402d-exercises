@@ -9,6 +9,9 @@ const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const row = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
 let swipe = [];
 
+// How many keys are down right now. The swipe is over when the last one comes up.
+let held = 0;
+
 // ---------- P1: how fast was the swipe? ----------
 // Block 3 knew which way. It didn't know how fast: it only stored positions.
 // TODO P1a: make a second list, times, and push Date.now() into it every time you push a position.
@@ -27,6 +30,7 @@ let swipe = [];
 function keyDown(event) {
   Tone.start(); // sound can only start after a key press or a click
   if (event.repeat === false) {
+    held = held + 1;
     let position = row.indexOf(event.key);
     if (position !== -1) {
       swipe.push(position);
@@ -36,6 +40,11 @@ function keyDown(event) {
 }
 
 function keyUp(event) {
+  held = held - 1;
+  if (held > 0) {
+    return; // a finger is still on a key: the swipe isn't over yet
+  }
+  held = 0; // in case a key was already down when the page loaded
   if (swipe.length > 1) {
     let first = swipe[0];
     let last = swipe[swipe.length - 1];

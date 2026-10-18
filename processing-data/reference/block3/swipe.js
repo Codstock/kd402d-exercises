@@ -10,21 +10,30 @@ const row = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
 // The positions of the keys in one swipe, in the order they arrived.
 let swipe = [];
 
+// How many keys are down right now. The swipe is over when the last one comes up.
+let held = 0;
+
 // 7a: "q" is at 0 and "p" at 9. "a" isn't in the row, so indexOf gives back -1.
+// 7c: const { key, repeat } = event; makes two plain variables, key and repeat, made fresh
+//     inside keyDown for every key press.
 // 8b: q towards p, the numbers go up. p towards q, they go down.
+// 8c: swipe and held have to remember across many key presses, so they live at the top.
+//     position is only about this one key, so it's made inside keyDown, fresh each time.
 // 9c: with one key, first and last are the same position, so it's neither direction.
 //     The check for swipe.length > 1 skips it.
 // 10b: fast swipes often double a key or skip one, like [0, 1, 1, 3, 4, 6].
 //      First and last still say 0 then 6, so the direction is right. We don't need every key.
-// 10c: lift your finger between keys and every key is a swipe of one, so nothing plays.
-//      Our swipe ends at the first keyup. That's a choice too, and slow swipes break it.
+// 10c: lift your finger between keys and held drops to 0 after every key, so every key is
+//      a swipe of one and nothing plays. Ending a swipe when no key is down is a choice too.
 
 // ---------- Controls ----------
 function keyDown(event) {
   Tone.start(); // sound can only start after a key press or a click
-  if (event.repeat === false) {
-    let position = row.indexOf(event.key);
-    console.log(event.key + " is at " + position); // 7b
+  const { key, repeat } = event; // 7c
+  if (repeat === false) {
+    held = held + 1;
+    let position = row.indexOf(key);
+    console.log(key + " is at " + position); // 7b
     if (position !== -1) {
       swipe.push(position); // 8a: only keys in the row
       console.log(swipe);
@@ -33,6 +42,11 @@ function keyDown(event) {
 }
 
 function keyUp(event) {
+  held = held - 1;
+  if (held > 0) {
+    return; // a finger is still on a key: the swipe isn't over yet
+  }
+  held = 0; // in case a key was already down when the page loaded
   if (swipe.length > 1) {
     // 9c: a swipe needs at least two keys
     let first = swipe[0];

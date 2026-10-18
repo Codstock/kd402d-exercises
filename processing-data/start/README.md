@@ -28,44 +28,44 @@ When you save, the page reloads on its own and the code runs again from the top.
 
 ## Block 1: tapping one key (`block1/taps.js`)
 
-| Exercise | What you do                                                              | A commit message could be |
-| -------- | ------------------------------------------------------------------------ | ------------------------- |
-| 1        | Every space bar tap is stored with `Date.now()`; slow and quick taps     | `Store each tap`          |
-| 2        | Hold the key down, work out what went wrong, and fix it yourself         | `One hold, one tap`       |
-| 3        | The gap between the newest tap and the one before, and the first tap     | `Find the gaps`           |
-| 4        | Turn the gap into taps per second                                        | `Taps per second`         |
+| Exercise | What you do                                                               | A commit message could be |
+| -------- | ------------------------------------------------------------------------- | ------------------------- |
+| 1        | Every space bar tap is stored with `Date.now()`; slow and quick taps      | `Store each tap`          |
+| 2        | Hold the key down, work out what went wrong, and fix it yourself          | `One hold, one tap`       |
+| 3        | The gap between the newest tap and the one before, and where `taps` lives | `Find the gaps`           |
+| 4        | Turn the gap into taps per second                                         | `Taps per second`         |
 
 ## Block 2: make it audible (`block2/sound.js`)
 
-| Exercise | What you do                                                       | A commit message could be |
-| -------- | ----------------------------------------------------------------- | ------------------------- |
-| 5        | The gap sets the note length, never longer than 1 second          | `Gap sets the length`     |
+| Exercise | What you do                                                        | A commit message could be |
+| -------- | ------------------------------------------------------------------ | ------------------------- |
+| 5        | The gap sets the note length, never longer than 1 second           | `Gap sets the length`     |
 | 6        | Fast tapping plays a higher note, and you choose where fast begins | `Fast taps, higher note`  |
 
 At the end of block 2: the pair check-in on the slides.
 
 ## Block 3: swiping across the keys (`block3/swipe.js`)
 
-| Exercise | What you do                                                            | A commit message could be |
-| -------- | ---------------------------------------------------------------------- | ------------------------- |
-| 7        | `row.indexOf` gives each key a position, and -1 for keys not in the row | `Give keys a position`    |
-| 8        | Push each position into `swipe`, and watch the numbers rise or fall     | `Capture a swipe`         |
-| 9        | Compare the first and last position in `keyUp`, then start fresh       | `Which way`               |
-| 10       | A rising or falling phrase, and what messy swipes look like             | `Hear the direction`      |
+| Exercise | What you do                                                          | A commit message could be |
+| -------- | -------------------------------------------------------------------- | ------------------------- |
+| 7        | `row.indexOf` gives each key a position; take `key` out of the event | `Give keys a position`    |
+| 8        | Push each position into `swipe`, and watch the numbers rise or fall  | `Capture a swipe`         |
+| 9        | When the last key comes up, compare the first and last position      | `Which way`               |
+| 10       | A rising or falling phrase, and what messy swipes look like          | `Hear the direction`      |
 
 ## Block 4: your own action (`block4/own.js`)
 
-| Exercise | What you do                                                                  | A commit message could be |
-| -------- | ---------------------------------------------------------------------------- | ------------------------- |
-| 11       | Describe it, choose what to store, find the change between values, play it   | `My own action`           |
+| Exercise | What you do                                                                | A commit message could be |
+| -------- | -------------------------------------------------------------------------- | ------------------------- |
+| 11       | Describe it, choose what to store, find the change between values, play it | `My own action`           |
 
 ## Blue: patterns over time (`blue/patterns.js`)
 
-| Step | What you do                                                            | A commit message could be |
-| ---- | ---------------------------------------------------------------------- | ------------------------- |
-| B1   | Keep only the last five taps with `shift`                              | `Only the last five`      |
-| B2   | Compare the last two gaps: speeding up or slowing down, and hear it    | `Speeding up`             |
-| B3   | A second row, the home row, and which row a swipe was on               | `A second row`            |
+| Step | What you do                                                         | A commit message could be |
+| ---- | ------------------------------------------------------------------- | ------------------------- |
+| B1   | Keep only the last five taps with `shift`                           | `Only the last five`      |
+| B2   | Compare the last two gaps: speeding up or slowing down, and hear it | `Speeding up`             |
+| B3   | A second row, the home row, and which row a swipe was on            | `A second row`            |
 
 ## Purple: fast and slow swipes (`purple/swipes.js`)
 
@@ -80,7 +80,9 @@ At the end of block 2: the pair check-in on the slides.
 - **The first gap is `NaN`:** with one tap there's nothing before it. `taps[i - 1]` is `undefined`, and a number minus `undefined` is `NaN` (not a number).
 - **The gaps are huge, like 1729000000000:** you're logging a time, not a gap. A gap is one time minus the one before.
 - **`indexOf` gives back -1:** that key isn't in the row. Check the spelling and that it's lower case, and that caps lock is off.
+- **`taps` only ever holds one moment:** `let taps = [];` has moved inside `keyDown`, so every tap starts a new, empty list. Put it back at the top of the file.
+- **`ReferenceError: key is not defined`:** `const { key } = event;` makes `key` inside `keyDown` only. Use it there, or take it out of the event again in the other function.
 - **Nothing plays after a swipe:** check that `keyup` is added at the bottom, and that you swiped over at least two keys without lifting your finger.
-- **Slow swipes play nothing:** a swipe ends at the first keyup. Lift your finger between keys and every key is a swipe of one.
+- **Slow swipes play nothing:** a swipe ends when no key is down. Lift your finger between keys and every key is a swipe of one.
 - **The page scrolls when you press the space bar:** click the page first; if it still scrolls, it does no harm.
 - **No sound, but the console logs:** click the page after it reloads, check the volume and your headphones, and check that `Tone.start();` is still the first line in `keyDown`.

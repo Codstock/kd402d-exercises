@@ -11,6 +11,9 @@ let taps = [];
 const row = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
 let swipe = [];
 
+// How many keys are down right now. The swipe is over when the last one comes up.
+let held = 0;
+
 // B3a: the second row.
 const home = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
 let swipeRow = ""; // which row the current swipe is on
@@ -24,6 +27,7 @@ let swipeRow = ""; // which row the current swipe is on
 function keyDown(event) {
   Tone.start(); // sound can only start after a key press or a click
   if (event.repeat === false) {
+    held = held + 1;
     if (event.key === " ") {
       taps.push(Date.now());
       if (taps.length > 5) {
@@ -71,6 +75,11 @@ function keyDown(event) {
 }
 
 function keyUp(event) {
+  held = held - 1;
+  if (held > 0) {
+    return; // a finger is still on a key: the swipe isn't over yet
+  }
+  held = 0; // in case a key was already down when the page loaded
   if (swipe.length > 1) {
     let first = swipe[0];
     let last = swipe[swipe.length - 1];
